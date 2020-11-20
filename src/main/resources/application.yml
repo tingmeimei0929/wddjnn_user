@@ -1,0 +1,46 @@
+# 开发环境
+server:
+  port: 23302
+  session:
+    timeout: 30
+  contextPath: /
+spring:
+  application:
+    name: wddjnn-user
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://rm-2zen5k64755876dciao.mysql.rds.aliyuncs.com/smallmi?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    driver-class-name: com.mysql.jdbc.Driver
+    username: smallmi_rw
+    password: smallmi_rw
+    initial-size: 8
+    min-idle: 8
+    max-active: 150
+    # max-wait: 8000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 2
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+      # poolPreparedStatements: true
+    # maxPoolPreparedStatementPerConnectionSize: 20
+    #连接池监控
+    filters: stat,wall
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=200
+mybatis:
+  check-config-location: false
+  mapperLocations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+  threadpool:
+    default:
+      coreSize: 50
