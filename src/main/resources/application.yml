@@ -1,16 +1,13 @@
 # 开发环境
 server:
   port: 23302
-  session:
-    timeout: 30
-  contextPath: /
 spring:
   application:
     name: wddjnn-user
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://rm-2zen5k64755876dciao.mysql.rds.aliyuncs.com/smallmi?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: smallmi_rw
     password: smallmi_rw
     initial-size: 8
