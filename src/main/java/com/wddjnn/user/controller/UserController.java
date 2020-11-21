@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author wyc
  */
 @RestController
-@RequestMapping("wddjnn/user/")
+@RequestMapping("wddjnn/user")
 public class UserController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class UserController {
      * @param dto
      * @return
      */
-    @RequestMapping(value = "login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Wrapper<Boolean> login(@RequestBody UserLoginDto dto) {
         try {
             return new Wrapper<Boolean>().result(userService.checkUserLogin(dto.getUserName(), dto.getPassword()));
@@ -44,7 +44,7 @@ public class UserController {
      * @param dto
      * @return
      */
-    @RequestMapping(value = "register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Wrapper<Boolean> register(@RequestBody UserInfoDto dto) {
         try {
             return new Wrapper<Boolean>().result(userService.register(dto));

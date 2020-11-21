@@ -1,6 +1,8 @@
 # 开发环境
 server:
   port: 23302
+  servlet:
+    context-path: /wddjnn_user
 spring:
   application:
     name: wddjnn-user
