@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(userInfoDto, user);
         user.setYn((byte) YesNoEnum.YES.getCode());
         user.setCreateTime(new Date());
+        user.setStatus((byte) YesNoEnum.YES.getCode());
         return userMapper.insert(user) > 0;
     }
 }

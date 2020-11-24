@@ -4,6 +4,7 @@ import com.wddjnn.user.domain.dto.UserInfoDto;
 import com.wddjnn.user.domain.dto.UserLoginDto;
 import com.wddjnn.user.service.UserService;
 import com.wddjnn.user.util.wrapper.Wrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("wddjnn/user")
+@Slf4j
 public class UserController {
 
     @Autowired
@@ -34,6 +36,7 @@ public class UserController {
         try {
             return new Wrapper<Boolean>().result(userService.checkUserLogin(dto.getUserName(), dto.getPassword()));
         } catch (Exception e) {
+            log.error("登录失败", e);
             return new Wrapper(500, "登录失败");
         }
     }
@@ -49,6 +52,7 @@ public class UserController {
         try {
             return new Wrapper<Boolean>().result(userService.register(dto));
         } catch (Exception e) {
+            log.error("注册失败", e);
             return new Wrapper(500, "注册失败");
         }
     }
