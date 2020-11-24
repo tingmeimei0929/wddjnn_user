@@ -3,6 +3,7 @@ package com.wddjnn.user.controller;
 import com.wddjnn.user.domain.dto.UserInfoDto;
 import com.wddjnn.user.domain.dto.UserLoginDto;
 import com.wddjnn.user.service.UserService;
+import com.wddjnn.user.util.exception.BizException;
 import com.wddjnn.user.util.wrapper.Wrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,8 @@ public class UserController {
     public Wrapper<Boolean> register(@RequestBody UserInfoDto dto) {
         try {
             return new Wrapper<Boolean>().result(userService.register(dto));
+        } catch (BizException bz) {
+            return new Wrapper(bz.getCode(), bz.getMessage());
         } catch (Exception e) {
             log.error("注册失败", e);
             return new Wrapper(500, "注册失败");
